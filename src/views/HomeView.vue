@@ -4,7 +4,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <div></div>
+  <div>메인</div>
 </template>
 
 <style lang="scss" scoped></style>

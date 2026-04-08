@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div>
-    <RouterView />
-  </div>
+  <div><h1>login</h1></div>
 </template>
 
 <style lang="scss" scoped></style>
