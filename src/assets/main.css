@@ -8,4 +8,21 @@
 
   /* ── KB Sub Colors ── */
   --color-kb-dark-gray: #545045;    /* KB Dark Gray */
+  --color-kb-income: #1A7A50;
+  --color-kb-expense: #C84040;
+  --color-kb-profit: #1A1A1A;
+  --color-kb-app-bg: #F4F2EE;
+  --color-kb-card: #FFFFFF;
+  --color-kb-card-yellow: #FFDF80;
+  --color-kb-line: #D9D9D9;
+  --color-kb-divider: #EFEFEF;
+  --color-kb-muted: #A6A6A6;
+  --color-kb-soft-text: #666666;
+  --color-kb-empty: #8F877B;
+  --color-kb-icon-yellow: #FFF8DC;
+  --color-kb-icon-green: #E8F5E0;
+  --color-kb-icon-blue: #E8F0FF;
+  --color-kb-icon-pink: #FFE8F5;
+  --color-kb-icon-beige: #FFF0E0;
+  --color-kb-icon-ivory: #F7F0E0;
 }
