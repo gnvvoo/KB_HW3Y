@@ -1,20 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import RegisterView from '../views/RegisterView.vue'
-import RegisterAgreement from '../components/Register/RegisterAgreement.vue'
-import RegisterAccount from '../components/Register/RegisterAccount.vue'
 
+//import LoginView from '../views/LoginView.vue'
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
+      path: '/',
+      name: 'home',
+      component: () => import('../views/HomeView.vue'), // 가계부 메인
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue'),
+    },
+    {
       path: '/register',
-      component: RegisterView,
+      name: 'register',
+      component: () => import('../views/RegisterView.vue'),
       children: [
-        // /register 접근 시 1단계(약관 동의)로 리다이렉트
         { path: '', redirect: '/register/agreement' },
-        { path: 'agreement', component: RegisterAgreement },
-        { path: 'account', component: RegisterAccount },
+        { path: 'agreement', component: import('../components/Register/RegisterAgreement.vue') },
+        { path: 'account', component: import('../components/Register/RegisterAccount.vue') },
       ],
+    },
+    {
+      path: '/transactions', // 이미지 기획서대로 s 추가
+      name: 'summary',
+      component: () => import('../views/SummaryView.vue'), // 요약 리스트
+    },
+    {
+      path: '/transactions/new', // 앞에 / 추가 및 s 추가
+      name: 'challenge',
+      component: () => import('../views/ChallengeView.vue'), // 내역 입력(챌린지)
+    },
+    {
+      path: '/transactions/:id',
+      name: 'transaction-detail',
+      component: () => import('../views/TransactionDetailView.vue'),
+    },
+    {
+      path: '/settings',
+      name: 'profile',
+      component: () => import('../views/ProfileView.vue'), // 프로필/설정
     },
   ],
 })
