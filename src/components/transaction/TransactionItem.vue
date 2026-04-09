@@ -1,12 +1,16 @@
 <script setup>
+import { useRouter } from 'vue-router'
+
 import busIcon from '@/assets/bus.svg'
 import coffeeIcon from '@/assets/coffee.svg'
 import cutleryIcon from '@/assets/cutlery.svg'
 import homeIcon from '@/assets/home.svg'
 import shoppingBagIcon from '@/assets/shoppingBag.svg'
 import trophyIcon from '@/assets/trophy.svg'
-import workIcon from '@/assets/work_24dp_60584C_FILL0_wght400_GRAD0_opsz24.svg'
+import workIcon from '@/assets/suitcase.svg'
 import mealIcon from '@/assets/calendar_meal_24dp_60584C_FILL0_wght400_GRAD0_opsz24.svg'
+
+const router = useRouter()
 
 const props = defineProps({
   transaction: {
@@ -37,7 +41,10 @@ const subtitle = props.transaction.memo || props.transaction.merchant || ''
 </script>
 
 <template>
-  <article class="flex items-center gap-4 px-4 py-4">
+  <article
+    class="flex cursor-pointer items-center gap-4 px-4 py-4 active:bg-kb-divider"
+    @click="router.push({ name: 'transaction-detail', params: { id: transaction.id } })"
+  >
     <div
       class="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-[16px]"
       :class="categoryMeta.iconBg"
