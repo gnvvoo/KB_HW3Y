@@ -19,13 +19,14 @@
   --color-kb-divider: #efefef;
   --color-kb-muted: #a6a6a6;
   --color-kb-soft-text: #666666;
-  --color-kb-empty: #8f877b;
-  --color-kb-icon-yellow: #fff8dc;
-  --color-kb-icon-green: #e8f5e0;
-  --color-kb-icon-blue: #e8f0ff;
-  --color-kb-icon-pink: #ffe8f5;
-  --color-kb-icon-beige: #fff0e0;
-  --color-kb-icon-ivory: #f7f0e0;
+  --color-kb-empty: #8F877B;
+  --color-kb-overlay: #00000066;
+  --color-kb-icon-yellow: #FFF8DC;
+  --color-kb-icon-green: #E8F5E0;
+  --color-kb-icon-blue: #E8F0FF;
+  --color-kb-icon-pink: #FFE8F5;
+  --color-kb-icon-beige: #FFF0E0;
+  --color-kb-icon-ivory: #F7F0E0;
   --color-over-bg: #fee2e2;
 
   /* ── KB Gradients ── */

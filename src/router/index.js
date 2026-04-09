@@ -51,6 +51,7 @@ const router = createRouter({
       component: () => import('@/views/ChallengeView.vue'),
       meta: { requiresAuth: true },
     },
+
     {
       path: '/transactions/:id',
       name: 'transaction-detail',
@@ -58,7 +59,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/settings',
+      path: '/profile',
       name: 'profile',
       component: () => import('@/views/ProfileView.vue'),
       meta: { requiresAuth: true },
