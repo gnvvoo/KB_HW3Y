@@ -7,7 +7,7 @@ import MissionCard from '@/components/challenge/MissionCard.vue'
 </script>
 
 <template>
-  <div class="h-full overflow-y-auto">
+  <div class="h-full overflow-y-auto scrollbar-hide">
     <div class="p-4 pb-25 overflow-visible">
       <ChallengeCard />
       <RankingList />

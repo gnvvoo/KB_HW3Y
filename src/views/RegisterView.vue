@@ -75,7 +75,7 @@ async function handleNext() {
     </div>
 
     <!-- 각 단계별 콘텐츠 영역 (내용이 길면 이 영역만 스크롤) -->
-    <div class="mt-6 flex-1 flex flex-col overflow-y-auto">
+    <div class="mt-6 flex-1 flex flex-col overflow-y-auto scrollbar-hide">
       <RouterView />
     </div>
 
