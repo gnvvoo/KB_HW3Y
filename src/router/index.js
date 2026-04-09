@@ -6,6 +6,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'splash',
+      component: () => import('@/views/SplashView.vue'),
+    },
+    {
+      path: '/home',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
       meta: { requiresAuth: true }, // 로그인 필요
@@ -32,11 +37,6 @@ const router = createRouter({
           name: 'registerAccount',
           component: () => import('@/components/Register/RegisterAccount.vue'),
         },
-        {
-          path: 'profile',
-          name: 'registerProfile',
-          component: () => import('@/components/Register/RegisterProfile.vue'),
-        },
       ],
     },
     {
@@ -58,7 +58,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/profile',
+      path: '/settings',
       name: 'profile',
       component: () => import('@/views/ProfileView.vue'),
       meta: { requiresAuth: true },
