@@ -37,6 +37,11 @@ const router = createRouter({
           name: 'registerAccount',
           component: () => import('@/components/Register/RegisterAccount.vue'),
         },
+        {
+          path: 'profile',
+          name: 'registerProfile',
+          component: () => import('@/components/Register/RegisterProfile.vue'),
+        },
       ],
     },
     {
@@ -58,7 +63,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/settings',
+      path: '/profile',
       name: 'profile',
       component: () => import('@/views/ProfileView.vue'),
       meta: { requiresAuth: true },
