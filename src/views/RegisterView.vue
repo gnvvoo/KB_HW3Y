@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue'
 import RegisterButton from '../components/Register/RegisterButton.vue'
 import { useUserStore } from '../stores/user'
 import { useRouter } from 'vue-router'
@@ -6,8 +7,11 @@ import { useRouter } from 'vue-router'
 const userStore = useUserStore()
 const router = useRouter()
 
-// 단계별 라우트 매핑
-const stepRoutes = ['/register/agreement', '/register/account']
+// 단계별 라우트 매핑 (1단계: agreement, 2단계: account, 3단계: profile)
+const stepRoutes = ['/register/agreement', '/register/account', '/register/profile']
+
+// 현재 단계가 마지막 단계인지 여부 (버튼 레이블 전환용)
+const isLastStep = computed(() => userStore.currentStep === userStore.totalSteps)
 
 // 뒤로가기: 이전 단계 라우트로 이동 또는 히스토리 백
 function handlePrev() {
@@ -19,8 +23,23 @@ function handlePrev() {
   }
 }
 
-// 다음: 다음 단계 라우트로 이동
-function handleNext() {
+// 다음 / 가입 완료 버튼 핸들러
+async function handleNext() {
+  // 마지막 단계(3단계)일 때: 회원가입 API 호출
+  if (isLastStep.value) {
+    try {
+      await userStore.register()
+      // 네비게이션 완료 후 상태 초기화 (순서 중요: push 먼저 await)
+      await router.push({ name: 'login' })
+      userStore.resetRegister()
+    } catch (error) {
+      console.error('회원가입 실패:', error)
+      alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
+    }
+    return
+  }
+
+  // 중간 단계일 때: 다음 단계로 이동
   if (userStore.currentStep < userStore.totalSteps) {
     userStore.nextStep()
     router.push(stepRoutes[userStore.currentStep - 1])
@@ -32,6 +51,7 @@ function handleNext() {
   <div class="h-dvh bg-stone-50 flex flex-col px-5 pt-6 pb-8 overflow-hidden">
     <!-- 뒤로 버튼 -->
     <button
+      type="button"
       @click="handlePrev"
       class="flex items-center gap-1 text-sm text-kb-gray hover:text-kb-dark-gray transition-colors duration-200 w-fit"
     >
@@ -59,10 +79,10 @@ function handleNext() {
       <RouterView />
     </div>
 
-    <!-- 다음 버튼 -->
+    <!-- 다음 / 가입 완료 버튼 -->
     <RegisterButton
       class="bottom-0"
-      label="다음"
+      :label="isLastStep ? '가입 완료' : '다음'"
       :disabled="!userStore.isCurrentStepValid"
       @click="handleNext"
     />

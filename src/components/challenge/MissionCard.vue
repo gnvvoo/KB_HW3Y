@@ -3,7 +3,13 @@ import { ref } from 'vue'
 import checkIcon from '@/assets/check.svg'
 import homeIcon from '@/assets/home.svg'
 
-const missions = ref([{ id: 1, title: '집밥 5일 연속', isCompleted: true }])
+const missions = ref([
+  { id: 1, title: '집밥 5일 연속', isCompleted: true },
+  { id: 2, title: '카페 대신 물 마시기', isCompleted: false },
+  { id: 3, title: '하루 1만원 이하 소비', isCompleted: false },
+  { id: 4, title: '배달 음식 금지', isCompleted: true },
+  { id: 5, title: '가계부 매일 작성', isCompleted: false },
+])
 </script>
 
 <template>
