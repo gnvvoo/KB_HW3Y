@@ -91,7 +91,10 @@ watch(
 
 <template>
   <main class="relative h-full overflow-hidden bg-kb-app-bg text-kb-profit">
-    <div class="h-full pb-28" :class="isTransactionModalOpen ? 'overflow-hidden' : 'overflow-y-auto'">
+    <div
+      class="h-full pb-28"
+      :class="isTransactionModalOpen ? 'overflow-hidden' : 'overflow-y-auto scrollbar-hide'"
+    >
       <section class="bg-kb-yellow px-5 pb-5 pt-2">
         <div class="flex items-center justify-between pt-1">
           <button

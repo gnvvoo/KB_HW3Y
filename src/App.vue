@@ -4,7 +4,7 @@
       <!-- v-if 로직을 하나로 합쳐서 관리하는 것이 깨끗합니다 -->
       <NavBar v-if="showNav" />
       <!-- 하단바/네비바가 없을 때 Splash가 꽉 차도록 flex-1 확인 -->
-      <main class="flex-1 overflow-y-auto">
+      <main class="flex-1 overflow-y-auto scrollbar-hide">
         <RouterView />
       </main>
       <BottomBar v-if="showBottomBar" />
