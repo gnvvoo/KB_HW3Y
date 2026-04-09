@@ -1,27 +1,18 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import house from '@/assets/home.svg'
-import cutlery from '@/assets/cutlery.svg'
-import shoppingBag from '@/assets/shoppingBag.svg'
-import coffee from '@/assets/coffee.svg'
-import bus from '@/assets/bus.svg'
-import medical from '@/assets/Medical.svg'
-import leisure from '@/assets/leisure.svg'
-import invest from '@/assets/Invest.svg'
-import etc from '@/assets/Etc.svg'
 import { getTransactions } from '@/api/transaction'
+import { iconMap } from '@/utils/icons'
 
-// 아이콘 매핑
-const iconMap = {
-  주거: house,
-  식비: cutlery,
-  쇼핑: shoppingBag,
-  카페: coffee,
-  교통: bus,
-  의료: medical,
-  여가: leisure,
-  투자: invest,
-  기타: etc,
+const categoryIconMap = {
+  주거: iconMap.home,
+  식비: iconMap.cutlery,
+  쇼핑: iconMap.shopping,
+  카페: iconMap.coffee,
+  교통: iconMap.bus,
+  의료: iconMap.medical,
+  여가: iconMap.leisure,
+  투자: iconMap.invest,
+  기타: iconMap.etc,
 }
 
 const monthlyData = ref([])
@@ -51,7 +42,7 @@ onMounted(async () => {
 
   const maxAmount = Math.max(...Object.values(categoryMap), 1)
   categoryData.value = Object.entries(categoryMap).map(([name, amount]) => ({
-    icon: iconMap[name] ?? etc,
+    icon: categoryIconMap[name] ?? iconMap.etc,
     name,
     amount,
     max: maxAmount,
