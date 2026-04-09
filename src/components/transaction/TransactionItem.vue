@@ -1,5 +1,4 @@
 <script setup>
-
 import busIcon from '@/assets/bus.svg'
 import coffeeIcon from '@/assets/coffee.svg'
 import cutleryIcon from '@/assets/cutlery.svg'

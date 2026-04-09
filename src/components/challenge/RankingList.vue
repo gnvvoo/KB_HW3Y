@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import trophyIcon from '@/assets/trophy.svg'
+import { iconMap } from '@/utils/icons'
 
 const rankings = ref([
   { rank: 1, name: '박민준', category: '식비 챌린지', spent: 38420, saved: 61580, initial: '박' },
@@ -33,7 +33,7 @@ const myRanking = computed(() => {
   <div class="ranking-section mt-4 px-1">
     <!-- 제목 -->
     <div class="flex items-center gap-1 mb-2">
-      <img :src="trophyIcon" alt="trophy" class="w-5 h-5" />
+      <img :src="iconMap.trophy" alt="trophy" class="w-5 h-5" />
       <h3 class="text-lg font-bold text-[#1A1A1A]">절약 랭킹</h3>
     </div>
 
