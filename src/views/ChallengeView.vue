@@ -7,10 +7,12 @@ import MissionCard from '@/components/challenge/MissionCard.vue'
 </script>
 
 <template>
-  <div class="p-4">
-    <ChallengeCard />
-    <RankingList />
-    <MissionCard />
+  <div class="h-full overflow-y-auto">
+    <div class="p-4 pb-25 overflow-visible">
+      <ChallengeCard />
+      <RankingList />
+      <MissionCard />
+    </div>
   </div>
 </template>
 

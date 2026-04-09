@@ -1,28 +1,37 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   /* ── KB Main Colors ── */
-  --color-kb-yellow: #FFBC00;       /* KB Yellow Positive */
-  --color-kb-yellow-light: #FFCC00; /* KB Yellow Negative */
-  --color-kb-gray: #60584C;         /* KB Gray */
+  --color-kb-yellow: #ffbc00; /* KB Yellow Positive */
+  --color-kb-yellow-light: #ffcc00; /* KB Yellow Negative */
+  --color-kb-gray: #60584c; /* KB Gray */
+  --color-kb-yellow-dark: #ff9000;
 
   /* ── KB Sub Colors ── */
-  --color-kb-dark-gray: #545045;    /* KB Dark Gray */
-  --color-kb-income: #1A7A50;
-  --color-kb-expense: #C84040;
-  --color-kb-profit: #1A1A1A;
-  --color-kb-app-bg: #F4F2EE;
-  --color-kb-card: #FFFFFF;
-  --color-kb-card-yellow: #FFDF80;
-  --color-kb-line: #D9D9D9;
-  --color-kb-divider: #EFEFEF;
-  --color-kb-muted: #A6A6A6;
+  --color-kb-dark-gray: #545045; /* KB Dark Gray */
+  --color-kb-income: #1a7a50;
+  --color-kb-expense: #c84040;
+  --color-kb-profit: #1a1a1a;
+  --color-kb-app-bg: #f4f2ee;
+  --color-kb-card: #ffffff;
+  --color-kb-card-yellow: #ffdf80;
+  --color-kb-line: #d9d9d9;
+  --color-kb-divider: #efefef;
+  --color-kb-muted: #a6a6a6;
   --color-kb-soft-text: #666666;
-  --color-kb-empty: #8F877B;
-  --color-kb-icon-yellow: #FFF8DC;
-  --color-kb-icon-green: #E8F5E0;
-  --color-kb-icon-blue: #E8F0FF;
-  --color-kb-icon-pink: #FFE8F5;
-  --color-kb-icon-beige: #FFF0E0;
-  --color-kb-icon-ivory: #F7F0E0;
+  --color-kb-empty: #8f877b;
+  --color-kb-icon-yellow: #fff8dc;
+  --color-kb-icon-green: #e8f5e0;
+  --color-kb-icon-blue: #e8f0ff;
+  --color-kb-icon-pink: #ffe8f5;
+  --color-kb-icon-beige: #fff0e0;
+  --color-kb-icon-ivory: #f7f0e0;
+  --color-over-bg: #fee2e2;
+
+  /* ── KB Gradients ── */
+  --gradient-kb-yellow: linear-gradient(
+    90deg,
+    var(--color-kb-yellow) 0%,
+    var(--color-kb-yellow-dark) 100%
+  );
 }
