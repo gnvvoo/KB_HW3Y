@@ -1,14 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import checkIcon from '@/assets/check.svg'
-import homeIcon from '@/assets/home.svg'
+import { iconMap } from '@/utils/icons'
 
 const missions = ref([
-  { id: 1, title: '집밥 5일 연속', isCompleted: true },
-  { id: 2, title: '카페 대신 물 마시기', isCompleted: false },
-  { id: 3, title: '하루 1만원 이하 소비', isCompleted: false },
-  { id: 4, title: '배달 음식 금지', isCompleted: true },
-  { id: 5, title: '가계부 매일 작성', isCompleted: false },
+  { id: 1, title: '집밥 5일 연속', isCompleted: true, icon: iconMap.home },
+  { id: 2, title: '카페 대신 물 마시기', isCompleted: false, icon: iconMap.coffee },
+  { id: 3, title: '하루 1만원 이하 소비', isCompleted: false, icon: iconMap.check },
+  { id: 4, title: '배달 음식 금지', isCompleted: true, icon: iconMap.cutlery },
+  { id: 5, title: '가계부 매일 작성', isCompleted: false, icon: iconMap.calendar },
 ])
 </script>
 
@@ -24,8 +23,7 @@ const missions = ref([
       >
         <div class="flex items-center gap-2">
           <div class="w-10 h-10 flex items-center justify-center">
-            <img v-if="homeIcon" :src="homeIcon" alt="mission-icon" class="w-6 h-6" />
-            <span v-else class="text-xl">🏠</span>
+            <img :src="mission.icon" alt="mission-icon" class="w-6 h-6" />
           </div>
           <span class="font-bold text-[15px] text-gray-900">{{ mission.title }}</span>
         </div>
@@ -34,7 +32,7 @@ const missions = ref([
           class="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
           :class="mission.isCompleted ? 'bg-[#FFBC00]' : 'bg-gray-100'"
         >
-          <img :src="checkIcon" alt="check" class="w-4 h-4 scale-110" />
+          <img :src="iconMap.check" alt="check" class="w-4 h-4 scale-110" />
         </div>
       </div>
     </div>
