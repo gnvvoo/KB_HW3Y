@@ -4,9 +4,11 @@ import ramuFace from '@/assets/ramu_face.png'
 import logoutIcon from '@/assets/logout.svg'
 import { useAuthStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import ProfileEditModal from '@/components/profile/ProfileEditModal.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
+const isEditModalOpen = ref(false)
 
 function handleLogout() {
   authStore.logout()
@@ -58,7 +60,11 @@ const props = defineProps({
       <div
         class="w-16 h-16 rounded-full bg-kb-yellow flex items-center justify-center text-white text-2xl font-bold"
       >
-        <img :src="ramuFace" alt="프로필 이미지" class="w-16 h-16 rounded-full" />
+        <img
+          :src="authStore.currentUser?.profileImage || ramuFace"
+          alt="프로필 이미지"
+          class="w-16 h-16 rounded-full"
+        />
       </div>
 
       <!-- 이름 & 아이디 -->
@@ -87,13 +93,22 @@ const props = defineProps({
     <div class="flex justify-between text-center">
       <div class="flex-1">
         <div class="text-xl font-bold">{{ challengeCount }}</div>
-        <div class="text-sm text-gray-400">완료 챌린지</div>
+        <div class="text-sm text-kb-muted">완료 챌린지</div>
       </div>
 
       <div class="flex-1">
         <div class="text-xl font-bold">{{ rank }}위</div>
-        <div class="text-sm text-gray-400">이번 달 랭킹</div>
+        <div class="text-sm text-kb-muted">이번 달 랭킹</div>
       </div>
     </div>
+
+    <!-- 프로필 수정 버튼 -->
+    <button
+      @click="isEditModalOpen = true"
+      class="w-full mt-3 py-2 rounded-xl border border-kb-line bg-kb-bg text-sm text-kb-muted hover:bg-kb-line transition-colors"
+    >
+      프로필 수정
+    </button>
   </div>
+  <ProfileEditModal v-if="isEditModalOpen" @close="isEditModalOpen = false" />
 </template>
