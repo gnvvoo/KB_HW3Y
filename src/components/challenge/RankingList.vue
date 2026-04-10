@@ -30,9 +30,10 @@ onUnmounted(() => {
   if (pollingTimer) clearInterval(pollingTimer)
 })
 
-const myRanking = computed(() => rankings.value.find((r) => r.isMe))
+const currentUserId = authStore.currentUser?.id
+const myRanking = computed(() => rankings.value.find((r) => String(r.userId) === String(currentUserId)))
 const myRank = computed(() => myRanking.value?.rank ?? 999)
-const topTen = computed(() => rankings.value.filter((r) => !r.isMe).slice(0, 10))
+const topTen = computed(() => rankings.value.filter((r) => String(r.userId) !== String(currentUserId)).slice(0, 10))
 const listItems = computed(() =>
   rankings.value
     .slice()
