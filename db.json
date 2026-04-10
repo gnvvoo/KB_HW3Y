@@ -18,14 +18,14 @@
       "email": "wldus@naver.com",
       "password": "wldus2714!",
       "nickname": "지연",
-      "profileImage": "/src/assets/ramu_face.png",
+      "profileImage": null,
       "monthlyBudget": 600000,
       "level": 1,
       "challengeCount": 0,
       "thisMonthRank": 0,
       "streakDays": 0,
       "joinedAt": "2026-04-09",
-      "currentChallengeId": null,
+      "currentChallengeId": "2",
       "id": "pATImzNd7lY"
     },
     {
@@ -39,8 +39,22 @@
       "thisMonthRank": 0,
       "streakDays": 0,
       "joinedAt": "2026-04-09",
-      "currentChallengeId": null,
+      "currentChallengeId": "3",
       "id": "WMNIxvbXK0s"
+    },
+    {
+      "email": "test@gmail.ccom",
+      "password": "qwer1234!",
+      "nickname": "하이",
+      "profileImage": "/src/assets/bibi_face.png",
+      "monthlyBudget": 500000,
+      "level": 1,
+      "challengeCount": 0,
+      "thisMonthRank": 0,
+      "streakDays": 0,
+      "joinedAt": "2026-04-10",
+      "currentChallengeId": "4",
+      "id": "MkfkR-x"
     }
   ],
   "transactions": [
@@ -259,96 +273,190 @@
       "memo": "주말 영화",
       "createdAt": "2026-04-05T14:00:00",
       "updatedAt": "2026-04-05T14:00:00"
+    }
+  ],
+  "monthlyChallenge": [
+    {
+      "id": "1",
+      "month": "2026-01",
+      "title": "10만원 한달살기",
+      "category": "식비",
+      "targetAmount": 100000,
+      "description": "식비 카테고리 예산을 10만원 이하로 유지하기"
     },
     {
-      "userId": "1",
-      "type": "income",
-      "category": "부업",
-      "amount": 10000000000,
-      "date": "2026-04-02",
-      "merchant": "인프런에서 프리랜서로 부업했어요.",
-      "memo": "인프런에서 프리랜서로 부업했어요.",
-      "createdAt": "2026-04-09T07:54:43.924Z",
-      "updatedAt": "2026-04-09T07:54:43.924Z",
-      "id": "jZzAioUOX-4"
+      "id": "2",
+      "month": "2026-02",
+      "title": "쇼핑 5만원 제한",
+      "category": "쇼핑",
+      "targetAmount": 50000,
+      "description": "쇼핑 카테고리 지출을 5만원 이하로 유지하기"
+    },
+    {
+      "id": "3",
+      "month": "2026-03",
+      "title": "카페 지출 줄이기",
+      "category": "카페",
+      "targetAmount": 30000,
+      "description": "카페 카테고리 지출을 3만원 이하로 유지하기"
+    },
+    {
+      "id": "4",
+      "month": "2026-04",
+      "title": "10만원 한달살기",
+      "category": "식비",
+      "targetAmount": 100000,
+      "description": "식비 카테고리 예산을 10만원 이하로 유지하기"
     }
   ],
   "challenges": [
     {
       "id": "1",
       "userId": "1",
-      "title": "10만원 한달살기",
-      "month": "2026-04",
-      "targetAmount": 100000,
+      "monthlyChallengeId": "4",
       "spentAmount": 67300,
       "savedAmount": 32700,
       "status": "active",
-      "description": "식비 카테고리 예산을 10만원 이하로 유지하기",
       "weeks": [
-        {
-          "label": "1주 완료",
-          "status": "done"
-        },
-        {
-          "label": "2주 완료",
-          "status": "done"
-        },
-        {
-          "label": "3주 진행중",
-          "status": "current"
-        },
-        {
-          "label": "4주 진행 전",
-          "status": "todo"
-        }
+        { "label": "1주 완료", "status": "done" },
+        { "label": "2주 완료", "status": "done" },
+        { "label": "3주 진행중", "status": "current" },
+        { "label": "4주 진행 전", "status": "todo" }
+      ]
+    },
+    {
+      "id": "2",
+      "userId": "pATImzNd7lY",
+      "monthlyChallengeId": "4",
+      "spentAmount": 45000,
+      "savedAmount": 55000,
+      "status": "active",
+      "weeks": [
+        { "label": "1주 완료", "status": "done" },
+        { "label": "2주 완료", "status": "done" },
+        { "label": "3주 진행중", "status": "current" },
+        { "label": "4주 진행 전", "status": "todo" }
+      ]
+    },
+    {
+      "id": "3",
+      "userId": "WMNIxvbXK0s",
+      "monthlyChallengeId": "4",
+      "spentAmount": 72000,
+      "savedAmount": 28000,
+      "status": "active",
+      "weeks": [
+        { "label": "1주 완료", "status": "done" },
+        { "label": "2주 진행중", "status": "current" },
+        { "label": "3주 진행 전", "status": "todo" },
+        { "label": "4주 진행 전", "status": "todo" }
+      ]
+    },
+    {
+      "id": "4",
+      "userId": "MkfkR-x",
+      "monthlyChallengeId": "4",
+      "spentAmount": 88000,
+      "savedAmount": 12000,
+      "status": "active",
+      "weeks": [
+        { "label": "1주 완료", "status": "done" },
+        { "label": "2주 진행중", "status": "current" },
+        { "label": "3주 진행 전", "status": "todo" },
+        { "label": "4주 진행 전", "status": "todo" }
       ]
     }
   ],
   "challengeLeaderboard": [
     {
       "id": "1",
-      "challengeId": 1,
+      "monthlyChallengeId": "4",
+      "userId": "fake-1",
       "rank": 1,
       "name": "박민준",
       "savedAmount": 61580,
-      "spentAmount": 38420,
-      "isMe": false
+      "spentAmount": 38420
     },
     {
       "id": "2",
-      "challengeId": 1,
+      "monthlyChallengeId": "4",
+      "userId": "fake-2",
       "rank": 2,
       "name": "이서연",
       "savedAmount": 47900,
-      "spentAmount": 52100,
-      "isMe": false
+      "spentAmount": 52100
     },
     {
       "id": "3",
-      "challengeId": 1,
+      "monthlyChallengeId": "4",
+      "userId": "fake-3",
       "rank": 3,
       "name": "김재훈",
       "savedAmount": 38200,
-      "spentAmount": 61800,
-      "isMe": false
+      "spentAmount": 61800
     },
     {
       "id": "4",
-      "challengeId": 1,
+      "monthlyChallengeId": "4",
+      "userId": "fake-4",
       "rank": 4,
       "name": "최수진",
       "savedAmount": 34500,
-      "spentAmount": 65500,
-      "isMe": false
+      "spentAmount": 65500
     },
     {
       "id": "5",
-      "challengeId": 1,
+      "monthlyChallengeId": "4",
+      "userId": "1",
       "rank": 5,
-      "name": "나 (홍길동)",
+      "name": "홍길동",
       "savedAmount": 32700,
-      "spentAmount": 67300,
-      "isMe": true
+      "spentAmount": 67300
+    },
+    {
+      "id": "6",
+      "monthlyChallengeId": "4",
+      "userId": "fake-6",
+      "rank": 6,
+      "name": "정우진",
+      "savedAmount": 28100,
+      "spentAmount": 71900
+    },
+    {
+      "id": "7",
+      "monthlyChallengeId": "4",
+      "userId": "fake-7",
+      "rank": 7,
+      "name": "한지수",
+      "savedAmount": 22400,
+      "spentAmount": 77600
+    },
+    {
+      "id": "8",
+      "monthlyChallengeId": "4",
+      "userId": "fake-8",
+      "rank": 8,
+      "name": "오승현",
+      "savedAmount": 15800,
+      "spentAmount": 84200
+    },
+    {
+      "id": "9",
+      "monthlyChallengeId": "4",
+      "userId": "fake-9",
+      "rank": 9,
+      "name": "윤채원",
+      "savedAmount": 9300,
+      "spentAmount": 90700
+    },
+    {
+      "id": "10",
+      "monthlyChallengeId": "4",
+      "userId": "fake-10",
+      "rank": 10,
+      "name": "강도현",
+      "savedAmount": 3500,
+      "spentAmount": 96500
     }
   ],
   "challengeHistory": [
@@ -378,17 +486,51 @@
       "status": "fail",
       "spentAmount": 89000,
       "savedAmount": -39000
-    }
-  ],
-  "missions": [
+    },
     {
-      "id": "1",
-      "userId": "1",
-      "title": "집밥 5일 연속",
-      "status": "in_progress",
-      "currentCount": 4,
-      "targetCount": 5
+      "id": "4",
+      "userId": "pATImzNd7lY",
+      "title": "쇼핑 5만원 제한",
+      "month": "2026-02",
+      "status": "success",
+      "spentAmount": 32000,
+      "savedAmount": 18000
+    },
+    {
+      "id": "5",
+      "userId": "pATImzNd7lY",
+      "title": "카페 지출 줄이기",
+      "month": "2026-03",
+      "status": "fail",
+      "spentAmount": 42000,
+      "savedAmount": -12000
+    },
+    {
+      "id": "6",
+      "userId": "WMNIxvbXK0s",
+      "title": "쇼핑 5만원 제한",
+      "month": "2026-02",
+      "status": "fail",
+      "spentAmount": 78000,
+      "savedAmount": -28000
+    },
+    {
+      "id": "7",
+      "userId": "WMNIxvbXK0s",
+      "title": "카페 지출 줄이기",
+      "month": "2026-03",
+      "status": "success",
+      "spentAmount": 21000,
+      "savedAmount": 9000
+    },
+    {
+      "id": "8",
+      "userId": "MkfkR-x",
+      "title": "카페 지출 줄이기",
+      "month": "2026-03",
+      "status": "success",
+      "spentAmount": 18000,
+      "savedAmount": 12000
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
