@@ -50,11 +50,18 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  // 프로필 수정 - PATCH /users/:id
+  async function updateProfile(data) {
+    const response = await apiClient.patch(`/users/${currentUser.value.id}`, data)
+    currentUser.value = { ...currentUser.value, ...response.data }
+  }
+
   return {
     currentUser,
     isLoggedIn,
     login,
     logout,
     initAuth,
+    updateProfile,
   }
 })
