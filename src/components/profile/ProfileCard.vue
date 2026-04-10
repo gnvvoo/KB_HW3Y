@@ -2,15 +2,23 @@
 import { ref } from 'vue'
 import ramuFace from '@/assets/ramu_face.png'
 import logoutIcon from '@/assets/logout.svg'
+import logoutImage from '@/assets/logout_image_no_bg.png'
 import { useAuthStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
 const router = useRouter()
 
+const showLogoutModal = ref(false)
+
 function handleLogout() {
   authStore.logout()
   router.push('/login')
+}
+
+function confirmLogout() {
+  showLogoutModal.value = false
+  handleLogout()
 }
 
 const props = defineProps({
@@ -45,12 +53,45 @@ const props = defineProps({
   <div class="bg-kb-card rounded-2xl p-4 shadow-sm relative">
     <!-- 로그아웃 버튼 -->
     <button
-      @click="handleLogout"
+      @click="showLogoutModal = true"
       class="absolute top-4 right-4 p-1 rounded-full hover:bg-kb-line transition-colors"
       aria-label="로그아웃"
     >
       <img :src="logoutIcon" alt="로그아웃" class="w-6 h-6" />
     </button>
+
+    <!-- 로그아웃 확인 모달 -->
+    <Teleport to="body">
+      <div
+        v-if="showLogoutModal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+        @click.self="showLogoutModal = false"
+      >
+        <div class="bg-white rounded-2xl shadow-xl w-72 overflow-hidden">
+          <div class="flex flex-col items-center px-6 pt-8 pb-6 gap-4">
+            <img :src="logoutImage" alt="로그아웃" class="w-60 h-60 object-contain" />
+            <div class="text-center">
+              <p class="text-lg font-bold text-kb-dark-gray">로그아웃</p>
+              <p class="text-sm text-kb-muted mt-1">정말 로그아웃 하시겠어요?</p>
+            </div>
+            <div class="flex gap-3 w-full mt-2">
+              <button
+                @click="showLogoutModal = false"
+                class="flex-1 py-2.5 rounded-xl border border-kb-line text-kb-muted text-sm font-medium hover:bg-kb-line transition-colors"
+              >
+                취소
+              </button>
+              <button
+                @click="confirmLogout"
+                class="flex-1 py-2.5 rounded-xl bg-kb-yellow text-black text-sm font-bold hover:opacity-90 transition-opacity"
+              >
+                로그아웃
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
 
     <!-- 상단 프로필 -->
     <div class="flex items-center gap-4">
