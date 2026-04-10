@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import ChallengeItem from './ChallengeItem.vue'
 import { useAuthStore } from '@/stores/user'
 import { getChallengeHistory } from '@/api/challenge'
@@ -28,8 +28,8 @@ onMounted(async () => {
   }
 
   isLoading.value = true
+
   try {
-    // 과거 히스토리 + 현재 진행 중인 챌린지 병렬 조회
     const currentChallengeId = authStore.currentUser?.currentChallengeId
     const [history, currentChallenge] = await Promise.all([
       getChallengeHistory(userId),
@@ -38,7 +38,6 @@ onMounted(async () => {
         : null,
     ])
 
-    // 현재 진행 중인 챌린지 → monthlyChallenge에서 제목/월 가져오기
     let currentItem = null
     if (currentChallenge) {
       const mc = await apiClient
@@ -81,14 +80,14 @@ onMounted(async () => {
   } finally {
     isLoading.value = false
   }
-
-  await authStore.updateProfile({ challengeCount: successCount, level: successCount + 1 })
 })
 </script>
 
 <template>
-  <div class="mt-6">
-    <h3 class="mb-2 text-lg font-bold text-kb-profit">챌린지 히스토리</h3>
+  <div class="mt-7">
+    <h3 class="mb-4 text-[18px] font-extrabold tracking-[-0.03em] text-kb-profit">
+      챌린지 히스토리
+    </h3>
 
     <div v-if="isLoading" class="flex justify-center py-6">
       <div
@@ -100,7 +99,7 @@ onMounted(async () => {
       챌린지 히스토리가 없습니다.
     </div>
 
-    <div v-else class="flex flex-col gap-3">
+    <div v-else class="flex flex-col gap-4">
       <ChallengeItem v-for="item in challenges" :key="item.id" v-bind="item" />
     </div>
   </div>
