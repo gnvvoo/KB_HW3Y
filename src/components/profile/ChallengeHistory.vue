@@ -68,6 +68,19 @@ onMounted(async () => {
   } finally {
     isLoading.value = false
   }
+
+  challenges.value = history
+    .slice()
+    .sort((a, b) => b.month.localeCompare(a.month))
+    .map((item) => ({
+    id: item.id,
+    title: item.title,
+    date: formatMonth(item.month),
+    status: item.status,
+    used: item.spentAmount,
+    saved: Math.abs(item.savedAmount),
+    percent: calcPercent(item.spentAmount, item.savedAmount),
+  }))
 })
 </script>
 
