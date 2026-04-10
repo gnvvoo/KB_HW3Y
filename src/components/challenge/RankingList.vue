@@ -12,8 +12,12 @@ onMounted(async () => {
   const challengeId = authStore.currentUser?.currentChallengeId
   if (!challengeId) return
 
+  const challengeRes = await apiClient.get(`/challenges/${challengeId}`)
+  const monthlyChallengeId = challengeRes.data?.monthlyChallengeId
+  if (!monthlyChallengeId) return
+
   const fetch = async () => {
-    const res = await apiClient.get(`/challengeLeaderboard?challengeId=${challengeId}&_limit=100`)
+    const res = await apiClient.get(`/challengeLeaderboard?monthlyChallengeId=${monthlyChallengeId}&_limit=100`)
     rankings.value = res.data.sort((a, b) => a.rank - b.rank)
   }
 
