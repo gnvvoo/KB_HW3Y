@@ -58,17 +58,20 @@ onMounted(async () => {
       }
     }
 
-    const historyItems = history.map((item) => ({
-      id: item.id,
-      title: item.title,
-      date: formatMonth(item.month),
-      status: item.status,
-      used: item.spentAmount,
-      saved: Math.abs(item.savedAmount),
-      percent: calcPercent(item.spentAmount, item.savedAmount),
-    }))
+    const historyItems = history
+      .slice()
+      .sort((a, b) => b.month.localeCompare(a.month))
+      .map((item) => ({
+        id: item.id,
+        title: item.title,
+        date: formatMonth(item.month),
+        status: item.status,
+        used: item.spentAmount,
+        saved: Math.abs(item.savedAmount),
+        percent: calcPercent(item.spentAmount, item.savedAmount),
+      }))
 
-    // 현재 챌린지를 맨 위에 표시
+    // 현재 챌린지를 맨 위에 표시, 히스토리는 최신 월 순
     challenges.value = currentItem ? [currentItem, ...historyItems] : historyItems
   } catch (err) {
     console.error('[ChallengeHistory] API error:', err)
@@ -91,6 +94,7 @@ onMounted(async () => {
 
   const successCount = history.filter((item) => item.status === 'success').length
   await authStore.updateProfile({ challengeCount: successCount, level: successCount + 1 })
+
 })
 </script>
 
