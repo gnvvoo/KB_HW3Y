@@ -20,9 +20,21 @@ function calcPercent(spentAmount, savedAmount) {
 
 onMounted(async () => {
   const userId = authStore.currentUser?.id
-  if (!userId) return
+  if (!userId) {
+    console.warn('[ChallengeHistory] currentUser is null — skipping fetch')
+    return
+  }
 
-  const history = await getChallengeHistory(userId)
+  console.log('[ChallengeHistory] fetching for userId:', userId)
+  let history
+  try {
+    history = await getChallengeHistory(userId)
+    console.log('[ChallengeHistory] received:', history)
+  } catch (err) {
+    console.error('[ChallengeHistory] API error:', err)
+    return
+  }
+
   challenges.value = history.map((item) => ({
     id: item.id,
     title: item.title,
