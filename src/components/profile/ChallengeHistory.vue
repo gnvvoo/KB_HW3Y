@@ -47,6 +47,7 @@ onMounted(async () => {
       currentItem = {
         id: `current-${currentChallenge.id}`,
         title: mc.title,
+        category: mc.category,
         date: formatMonth(mc.month),
         status: 'active',
         used: currentChallenge.spentAmount,
@@ -64,6 +65,7 @@ onMounted(async () => {
       .map((item) => ({
         id: item.id,
         title: item.title,
+        category: item.category,
         date: formatMonth(item.month),
         status: item.status,
         used: item.spentAmount,
