@@ -2,16 +2,19 @@
 import { ref, computed } from 'vue'
 import { useRegisterStore } from '../../stores/useRegisterStore'
 import ramuFace from '../../assets/ramu_face.png'
+import bibiFace from '../../assets/bibi_face.png'
+import coliFace from '../../assets/coli_face.png'
+import kikiFace from '../../assets/kiki_face.png'
+import agerFace from '../../assets/ager_face.png'
 
 const registerStore = useRegisterStore()
 
-// 프로필 이미지 미리보기 (기본: 라무 캐릭터)
+const avatarOptions = [ramuFace, bibiFace, coliFace, kikiFace, agerFace]
+
 const profileImagePreview = ref(ramuFace)
+const showAvatarModal = ref(false)
+const tempSelected = ref(ramuFace)
 
-// 파일 입력 요소 참조
-const fileInputRef = ref(null)
-
-// 월 목표 예산: 입력값(문자열)을 숫자로 파싱해서 스토어에 저장하는 computed
 const monthlyBudget = computed({
   get: () => registerStore.registerForm.monthlyBudget ?? '',
   set: (val) => {
@@ -20,22 +23,15 @@ const monthlyBudget = computed({
   },
 })
 
-// 사진 변경 버튼 클릭 시 파일 입력 트리거
-function handleImageClick() {
-  fileInputRef.value?.click()
+function openAvatarModal() {
+  tempSelected.value = profileImagePreview.value
+  showAvatarModal.value = true
 }
 
-// 이미지 파일 선택 시 base64로 변환 후 스토어에 저장
-function handleFileChange(event) {
-  const file = event.target.files[0]
-  if (!file) return
-
-  const reader = new FileReader()
-  reader.onload = (e) => {
-    profileImagePreview.value = e.target.result
-    registerStore.registerForm.profileImage = e.target.result
-  }
-  reader.readAsDataURL(file)
+function confirmAvatar() {
+  profileImagePreview.value = tempSelected.value
+  registerStore.registerForm.profileImage = tempSelected.value
+  showAvatarModal.value = false
 }
 </script>
 
@@ -54,24 +50,59 @@ function handleFileChange(event) {
       />
       <!-- 사진 변경 버튼 -->
       <button
-        @click="handleImageClick"
+        @click="openAvatarModal"
         type="button"
         class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-kb-yellow flex items-center justify-center shadow"
       >
         <span class="text-white text-xs font-bold">✎</span>
       </button>
     </div>
-    <span class="text-xs text-kb-yellow mt-2 cursor-pointer" @click="handleImageClick">사진 변경</span>
-
-    <!-- 숨겨진 파일 입력 -->
-    <input
-      ref="fileInputRef"
-      type="file"
-      accept="image/*"
-      class="hidden"
-      @change="handleFileChange"
-    />
+    <span class="text-xs text-kb-yellow mt-2 cursor-pointer" @click="openAvatarModal">사진 변경</span>
   </div>
+
+  <!-- 아바타 선택 모달 -->
+  <Teleport to="body">
+    <div
+      v-if="showAvatarModal"
+      class="fixed inset-0 bg-black/40 z-50 flex items-end justify-center"
+      @click.self="showAvatarModal = false"
+    >
+      <div class="bg-kb-card w-full max-w-md rounded-t-2xl p-6 pb-10">
+        <div class="w-10 h-1 bg-kb-line rounded-full mx-auto mb-5"></div>
+        <h2 class="text-base font-bold text-center mb-6">프로필 이미지 선택</h2>
+
+        <div class="flex gap-4 justify-center flex-wrap mb-8">
+          <button
+            v-for="(img, index) in avatarOptions"
+            :key="index"
+            @click="tempSelected = img"
+            type="button"
+            class="rounded-full border-2 transition-colors"
+            :class="tempSelected === img ? 'border-kb-yellow' : 'border-transparent'"
+          >
+            <img :src="img" class="w-20 h-20 rounded-full object-cover" />
+          </button>
+        </div>
+
+        <div class="flex gap-2">
+          <button
+            @click="showAvatarModal = false"
+            type="button"
+            class="flex-1 py-3 rounded-xl border border-kb-line text-sm text-kb-muted"
+          >
+            취소
+          </button>
+          <button
+            @click="confirmAvatar"
+            type="button"
+            class="flex-1 py-3 rounded-xl bg-kb-yellow text-sm font-bold text-kb-dark"
+          >
+            선택
+          </button>
+        </div>
+      </div>
+    </div>
+  </Teleport>
 
   <!-- 입력 폼 -->
   <div class="mt-6 flex flex-col gap-5">
