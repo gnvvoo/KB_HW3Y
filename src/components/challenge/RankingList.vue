@@ -27,13 +27,15 @@ onMounted(async () => {
     const targetAmount = mcRes.data.targetAmount
     const userMap = Object.fromEntries(usersRes.data.map((u) => [String(u.id), u.nickname]))
 
-    // 실제 유저 랭킹 (challenges 테이블 기반)
-    const realEntries = challengesRes.data.map((c) => ({
-      userId: String(c.userId),
-      name: userMap[String(c.userId)] ?? '알 수 없음',
-      spentAmount: c.spentAmount,
-      savedAmount: Math.max(targetAmount - c.spentAmount, 0),
-    }))
+    // 실제 유저 랭킹 (challenges 테이블 기반, 지출 1건 이상인 유저만)
+    const realEntries = challengesRes.data
+      .filter((c) => c.spentAmount > 0)
+      .map((c) => ({
+        userId: String(c.userId),
+        name: userMap[String(c.userId)] ?? '알 수 없음',
+        spentAmount: c.spentAmount,
+        savedAmount: Math.max(targetAmount - c.spentAmount, 0),
+      }))
 
     // 더미 유저 (challengeLeaderboard에서 fake- 유저만)
     const dummyEntries = dummyRes.data
